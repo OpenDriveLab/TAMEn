@@ -93,27 +93,6 @@ python3 tAmeR/tAmeR_ws.py \
    - Input panel is hidden
    - **Disconnect** button is shown
 
-Minimal TCP receiver example:
-```python
-import socket
-
-HOST = "0.0.0.0"
-PORT = 8018
-
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.bind((HOST, PORT))
-    s.listen(1)
-    print(f"Listening on {HOST}:{PORT}")
-    conn, addr = s.accept()
-    print("Connected by", addr)
-    with conn:
-        while True:
-            data = conn.recv(4096)
-            if not data:
-                break
-            print(data.decode("utf-8", errors="ignore").strip())
-```
-
 #### 4) Data Format (TCP)
 Each line is semicolon-separated:
 `timestamp;LG=T/F;RG=T/F;LT=T/F;RT=T/F;left_pose;right_pose;X=T/F;A=T/F;Y=T/F;B=T/F`
