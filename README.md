@@ -2,7 +2,7 @@
 
 <video src="https://raw.githubusercontent.com/OpenDriveLab/opendrivelab.github.io/master/TAMEn/landing/teaser.mp4" autoplay muted loop playsinline width="100%"></video>
 
-🚀 [Website](https://opendrivelab.com/TAMEn) | 📄 [Paper](https://arxiv.org/abs/2604.07335) | 🛠️ [Hardware (Coming Soon)](#hardware-assembly)
+🚀 [Website](https://opendrivelab.com/TAMEn) | 📄 [Paper](https://arxiv.org/abs/2604.07335) | 🛠️ [Hardware (Coming Soon)](https://github.com/OpenDriveLab/TAMEn)
 
 ✒️ **Longyan Wu**<sup>1,2,3</sup>, **Jieji Ren**<sup>4</sup>, **Chenghang Jiang**<sup>5</sup>, **Junxi Zhou**<sup>5</sup>, **Shijia Peng**<sup>3</sup>, **Ran Huang**<sup>1</sup>, **Guoying Gu**<sup>4</sup>, **Li Chen**<sup>3</sup>, **Hongyang Li**<sup>2,3</sup>
 
@@ -25,18 +25,18 @@
 ## ✅ TODO List
 
 > Note: TAMEn follows a staged release plan for hardware, data, and policy modules.
-- [x] APK installation on Pico 4 Ultra (available and verified)
-- [x] Release hardware assembly package (4 vision-tactile sensor adaptor types)
-- [ ] Release data collection workflow and synchronization strategy
-- [ ] Release training scripts, model configs, and checkpoints
-- [ ] Release inference/deployment pipeline and benchmark examples
+- [x] Release tAmeR app for Pico 4 Ultra / Pico 4.
+- [ ] Release CAD models for multimodal data collection devices (compatible with GelSight, Xense, DW-Tac, PaXini, and our own sensor)
+- [ ] Release data collection workflow and dataset
+- [ ] Release training scripts, model configs, and inference pipeline
 
 ## 🎮 Getting Started
 
-### @tAmeR Quick Start
+### tAmeR Quick Start
 
-`tAmeR` runs on **PICO 4 / 4 Ultra** and sends controller poses + button states to a PC via TCP.  
-An optional ROS2 WebSocket-JPEG backend can be used to stream multi-camera visual/tactile images.
+- `tAmeR` runs on **PICO 4 / 4 Ultra** and sends controller poses + button states to a PC via TCP.
+- It can be directly applied to teleoperation for arbitrary robot arms, and we will soon open-source our teleoperation programs for **JAKA K1** and **AgileX Piper**.
+- An optional ROS2 WebSocket-JPEG backend can be used to stream multi-camera visual/tactile images.
 
 #### 1) Prerequisites
 - Headset side:
@@ -44,48 +44,37 @@ An optional ROS2 WebSocket-JPEG backend can be used to stream multi-camera visua
   - PICO and PC are in the same LAN
   - Controllers are paired and tracked
 - PC side:
-  - A TCP receiver is running on your PC (custom script or your own ROS bridge)
+  - A TCP receiver is running on your PC
   - TCP port (default `8018`) is open and matches the app config
+  - Wrist cameras and visuo-tactile cameras are connected to the PC and publishing ROS2 image topics
 
 #### 2) Optional Video Backend (ROS2 -> WebSocket JPEG)
-System recommendation: Ubuntu 20.04/22.04, ROS2 (Foxy/Humble/Iron), Python 3.8+.
+Dependencies
+```bash
+sudo apt update
+sudo apt install -y python3-opencv python3-aiohttp python3-numpy
+source /opt/ros/<your_ros_distro>/setup.bash
+python3 -c "import rclpy; from sensor_msgs.msg import Image; print('ros2 ok')"
+```
 
-Install dependencies:
-   ```bash
-   sudo apt update
-   sudo apt install -y python3-pip python3-venv libopencv-dev
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install --upgrade pip
-   pip install numpy opencv-python aiohttp
-   ```
+Start backend service
+```bash
+# optional venv
+# python3 -m venv tamen && source tamen/bin/activate && pip install --upgrade pip && pip install numpy opencv-python aiohttp
 
-Verify ROS2 Python packages:
-   ```bash
-   python3 -c "import rclpy; print('rclpy ok')"
-   python3 -c "from sensor_msgs.msg import Image; print('sensor_msgs ok')"
-   ```
-
-Start backend:
-   ```bash
-   source /opt/ros/<your_ros_distro>/setup.bash
-   python tAmeR/tAmeR_ws.py \
-     --host 0.0.0.0 \
-     --port 8765 \
-     --left-topic /left_camera/color/image_raw \
-     --right-topic /right_camera/color/image_raw \
-     --right-tactile-topic /right_tactile_camera/color/image_raw \
-     --left-tactile-topic /left_tactile_camera/color/image_raw \
-     --tile-width 320 \
-     --tile-height 240 \
-     --fps 10 \
-     --jpeg-quality 70
-   ```
-
-Health checks:
-- `http://<your-ip>:8765/health`
-- `http://<your-ip>:8765/config`
-- `ws://<your-ip>:8765/ws/video`
+source /opt/ros/<your_ros_distro>/setup.bash
+python tAmeR/tAmeR_ws.py \
+  --host 0.0.0.0 \
+  --port 8765 \
+  --left-topic /left_camera/color/image_raw \
+  --right-topic /right_camera/color/image_raw \
+  --right-tactile-topic /right_tactile_camera/color/image_raw \
+  --left-tactile-topic /left_tactile_camera/color/image_raw \
+  --tile-width 320 \
+  --tile-height 240 \
+  --fps 10 \
+  --jpeg-quality 70
+```
 
 #### 3) Run VR Collection on Headset
 1. Launch `tAmeR.apk` on PICO.
@@ -99,7 +88,7 @@ Health checks:
    - Input panel is hidden
    - **Disconnect** button is shown
 
-Minimal TCP receiver example (Python):
+Minimal TCP receiver example:
 ```python
 import socket
 
@@ -128,11 +117,6 @@ Each line is semicolon-separated:
 - `LT/RT`: triggers
 - `X/Y/A/B`: face buttons
 - `left_pose/right_pose`: `x y z rx ry rz`
-
-#### 5) Troubleshooting
-- **Connect failed**: check receiver process, IP/port match, and firewall.
-- **valid=False / controller not tracked**: re-pair controllers and verify headset tracking.
-- **Connected but no data**: confirm same LAN and verify receiver parsing logic.
 
 ## 📝 Citation
 
