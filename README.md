@@ -34,6 +34,8 @@
 
 ### tAmeR Quick Start
 
+**tAmeR** is an AR app for robot teleoperation, providing operators with real-time visual and tactile feedback.
+
 - `tAmeR` runs on **PICO 4 / 4 Ultra** and sends controller poses + button states to a PC via TCP.
 - It can be directly applied to teleoperation for arbitrary robot arms, and we will soon open-source our teleoperation programs for **JAKA K1** and **AgileX Piper**.
 - An optional ROS2 WebSocket-JPEG backend can be used to stream multi-camera visual/tactile images.
