@@ -142,4 +142,4 @@ We gratefully acknowledge Qianyu Guo, Checheng Yu, Chonghao Sima, Jingmin Zhang,
 
 ## 📄 License
 
-This project is licensed under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+This project is licensed under the [Apache License 2.0](./LICENSE.txt).
