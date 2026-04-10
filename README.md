@@ -25,7 +25,7 @@
 ## ✅ TODO List
 
 > Note: TAMEn follows a staged release plan for hardware, data, and policy modules.
-- [x] Release tAmeR app for Pico 4 Ultra / Pico 4.
+- [x] Release tAmeR app for Pico 4 Ultra / Pico 4
 - [ ] Release CAD models for multimodal data collection devices (compatible with GelSight, Xense, DW-Tac, PaXini, and our own sensor)
 - [ ] Release data collection workflow and dataset
 - [ ] Release training scripts, model configs, and inference pipeline
@@ -51,7 +51,9 @@
   - Wrist cameras and visuo-tactile cameras are connected to the PC and publishing ROS2 image topics
 
 #### 2) Optional Video Backend (ROS2 -> WebSocket JPEG)
-Dependencies
+
+**Dependencies**
+
 ```bash
 sudo apt update
 sudo apt install -y python3-opencv python3-aiohttp python3-numpy
@@ -59,13 +61,14 @@ source /opt/ros/<your_ros_distro>/setup.bash
 python3 -c "import rclpy; from sensor_msgs.msg import Image; print('ros2 ok')"
 ```
 
-Start backend service
+**Start backend service**
+
 ```bash
 # optional venv
 # python3 -m venv tamen && source tamen/bin/activate && pip install --upgrade pip && pip install numpy opencv-python aiohttp
 
 source /opt/ros/<your_ros_distro>/setup.bash
-python tAmeR/tAmeR_ws.py \
+python3 tAmeR/tAmeR_ws.py \
   --host 0.0.0.0 \
   --port 8765 \
   --left-topic /left_camera/color/image_raw \
