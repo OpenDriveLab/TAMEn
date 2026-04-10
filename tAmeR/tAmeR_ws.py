@@ -24,7 +24,7 @@ class RosImageStripNode(Node):
             "left_tactile_camera": None,
         }
         self.last_update: Dict[str, Optional[float]] = {k: None for k in self.frame_state.keys()}
-        self.subscriptions = []
+        self._image_subscriptions = []
 
         topic_map = {
             "left_camera": args.left_topic,
@@ -40,7 +40,7 @@ class RosImageStripNode(Node):
                 lambda msg, camera_name=name: self.on_image(camera_name, msg),
                 10,
             )
-            self.subscriptions.append(sub)
+            self._image_subscriptions.append(sub)
 
     def on_image(self, camera_name: str, msg: Image):
         try:

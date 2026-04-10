@@ -24,7 +24,7 @@
 
 ## ✅ TODO List
 
-> Note: TAMEn follows a staged release plan for hardware, data, and policy modules.
+> Note: TAMEn follows a staged release plan for hardware, data collection, and policy learning.
 - [x] Release tAmeR app for Pico 4 Ultra / Pico 4
 - [ ] Release CAD models for multimodal data collection devices (compatible with GelSight, Xense, DW-Tac, PaXini, and our own sensor)
 - [ ] Release data collection workflow and dataset
@@ -38,7 +38,7 @@
 
 - `tAmeR` runs on **PICO 4 / 4 Ultra** and sends controller poses + button states to a PC via TCP.
 - It can be directly applied to teleoperation for arbitrary robot arms, and we will soon open-source our teleoperation programs for **JAKA K1** and **AgileX Piper**.
-- An optional ROS2 WebSocket-JPEG backend can be used to stream multi-camera visual/tactile images.
+- A ROS2 WebSocket-JPEG backend can be used to stream multi-camera visual/tactile images.
 
 #### 1) Prerequisites
 - Headset side:
@@ -50,7 +50,7 @@
   - TCP port (default `8018`) is open and matches the app config
   - Wrist cameras and visuo-tactile cameras are connected to the PC and publishing ROS2 image topics
 
-#### 2) Optional Video Backend (ROS2 -> WebSocket JPEG)
+#### 2) Video Backend (ROS2 -> WebSocket JPEG)
 
 **Dependencies**
 
