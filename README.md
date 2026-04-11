@@ -1,6 +1,6 @@
 # TAMEn: Tactile-Aware Manipulation Engine for Closed-Loop Data Collection in Contact-Rich Tasks
 
-<video src="https://raw.githubusercontent.com/OpenDriveLab/opendrivelab.github.io/master/TAMEn/landing/teaser.mp4" autoplay muted loop playsinline width="100%"></video>
+<img src="https://raw.githubusercontent.com/OpenDriveLab/opendrivelab.github.io/master/TAMEn/landing/teaser.jpg" alt="TAMEn: dual-mode acquisition, data recipe, and data flywheel (teaser)" width="100%" />
 
 🚀 [Website](https://opendrivelab.com/TAMEn) | 📄 [Paper](https://arxiv.org/abs/2604.07335) | 🛠️ [Hardware (Coming Soon)](https://github.com/OpenDriveLab/TAMEn)
 
