@@ -1,0 +1,8 @@
+float64[] joint_positions
+int32 move_mode  # 0 for absolute, 1 for relative
+int32 robot_arm_index  # -1 for dual arm, 0 for left, 1 for right
+bool is_blocking
+float64 speed
+---
+int32 success
+string message

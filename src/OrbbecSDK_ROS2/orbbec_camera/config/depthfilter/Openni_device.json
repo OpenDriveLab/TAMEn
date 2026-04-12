@@ -1,0 +1,66 @@
+{
+	"device": "Orbbec Openni deivce",
+	"structVersion": "0x0000000a",
+	"dataVersion": "1.5.0",
+	"description": "Orbbec openni depth filter params",
+	"configDate": "20231204",
+	"vid": "0x2bc5",
+	"pid": "0x0670",
+	"depthFilters": [
+		{
+			"depthWorkMode": "",
+		    "width": 640,
+			"height":400,
+			"bxf": 30500,
+			"invalid_value":0,
+			"NoiseRemovalFilter": {
+				"enable": true,
+				"size": 50,
+				"disp_diff": 6,
+				"type": "NR_LUT",
+				"lut": [
+					100, 25, 25, 100,
+					100, 25, 25, 100,
+					100, 25, 25, 100,
+					100, 25, 25, 100
+				]
+			},
+			"EdgeNoiseRemovalFilter": {
+				"enable": false,
+				"type": "MGC_FILTER",
+				"margin_left_th": 3,
+				"margin_right_th": 3,
+				"margin_top_th": 0,
+				"margin_bottom_th": 0
+			},
+			"SpatialFastFilter": {
+				"enable": false,
+				"size": 3
+			},
+			"SpatialModerateFilter": {
+				"enable": false,
+				"size": 3,
+				"iters": 1,
+				"disp_diff": 100
+			},
+			"SpatialAdvancedFilter": {
+				"enable": false,
+				"type": "SFA_ALL",
+				"iters": 1,
+				"alpha": 0.4,
+				"disp_diff": 100,
+				"radius": 5
+			},
+			"HoleFillingFilter": {
+				"enable": false,
+				"type": "FILL_TOP"
+			},
+			"TemporalFilter": {
+				"enable": false,
+				"type": "TF_FILL_DISABLED",
+				"scale": 0.1,
+				"weight": 0.4
+			}
+		}
+	]
+}

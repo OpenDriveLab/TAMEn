@@ -1,0 +1,7 @@
+float64[] end_position
+int32 move_mode  # 0 for absolute, 1 for relative
+bool is_blocking
+float64 speed
+---
+int32 success
+string message

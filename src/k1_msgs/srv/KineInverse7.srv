@@ -1,0 +1,7 @@
+float64[] cartesian_pose  # Cartesian-space pose (x, y, z, rx, ry, rz)
+float64[] ref_joint_pos   # Joint-space reference position [j1, j2, j3, j4, j5, j6, j7]
+int32 robot_arm_index  # -1 for dual arm, 0 for left, 1 for right
+---
+int32 success
+string message
+float64[] joint_positions  # Computed joint angles
